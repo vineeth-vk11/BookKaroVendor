@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login"
+    app:startDestination="@id/loginEnterPhoneFragment">
+
+    <fragment
+        android:id="@+id/loginEnterPhoneFragment"
+        android:name="com.example.bookkarovendor.loginui.LoginEnterPhoneFragment"
+        android:label="fragment_login_enter_phone"
+        tools:layout="@layout/fragment_login_enter_phone">
+        <action
+            android:id="@+id/action_loginEnterPhoneFragment_to_loginValidateOTPFragment"
+            app:destination="@id/loginValidateOTPFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginValidateOTPFragment"
+        android:name="com.example.bookkarovendor.loginui.LoginValidateOTPFragment"
+        android:label="LoginValidateOTPFragment">
+        <argument
+            android:name="phone_number"
+            app:argType="string" />
+    </fragment>
+</navigation>

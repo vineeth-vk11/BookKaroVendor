@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#262938</color>
+    <color name="colorPrimaryDark">#181A24</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorSplashBackground">#000000</color>
+    <color name="colorFragmentBackground">#F0F0F0</color>
+    <color name="colorCardBackground">#FFFFFF</color>
+
+    <color name="colorTextSubHeader">#828282</color>
+    <color name="colorTextHeader">#000000</color>
+    <color name="colorLogout">#FF0000</color>
+
+    <color name="statusPending">#828282</color>
+    <color name="statusAccepted">#1B8700</color>
+    <color name="statusCanceled">#d32f2f</color>
+
+    <color name="colorBackgroundAppBar">#000000</color>
+    <color name="colorTextAppBar">#FFFFFF</color>
+
+    <color name="colorBlack">#000000</color>
+
 </resources>
