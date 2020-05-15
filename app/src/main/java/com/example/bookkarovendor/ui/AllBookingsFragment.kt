@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookkarovendor.R
 import com.example.bookkarovendor.databinding.FragmentAllBookingsBinding
 
 class AllBookingsFragment : Fragment() {
 
-    private lateinit var viewModel: FirebaseViewModel
+    private lateinit var viewModel: BookingsViewModel
 
     private lateinit var binding: FragmentAllBookingsBinding
 
@@ -21,10 +22,25 @@ class AllBookingsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, BookingsViewModelFactory(requireActivity().application)).get(
+                BookingsViewModel::class.java
+            )
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_bookings, container, false)
 
+        binding.bookingsRecycler.layoutManager = LinearLayoutManager(requireContext())
 
+        viewModel.getPendingBookings()
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer { bookings ->
+                if (!bookings.isNullOrEmpty()) {
+                    val adapter = AcceptBookingsAdapter(
+                        bookings,
+                        requireContext(),
+                        requireActivity().application
+                    )
+                    binding.bookingsRecycler.adapter = adapter
+                }
+            })
 
         return binding.root
     }

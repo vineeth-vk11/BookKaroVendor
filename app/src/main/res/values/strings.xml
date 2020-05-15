@@ -19,4 +19,19 @@
     <string name="code_not_received">Didn\'t receive a code?</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="unable_to_add_account">Unable to add your account. Please try again.</string>
+    <string name="rupee_symbol">₹</string>
+
+
+    <!--START: Firebase Firestore values-->
+    <string name="firestore_collection_order_data" translatable="false">OrderData</string>
+    <string name="firestore_collection_order_data_field_accepted_shop_id" translatable="false">acceptedShopId</string>
+    <string name="firestore_collection_order_data_field_service_date" translatable="false">serviceDate</string>
+    <string name="firestore_collection_order_data_field_service_name" translatable="false">serviceName</string>
+    <string name="firestore_collection_order_data_field_service_price" translatable="false">servicePrice</string>
+    <string name="firestore_collection_order_data_field_status" translatable="false">status</string>
+    <string name="firestore_collection_order_data_field_user_id" translatable="false">userId</string>
+    <string name="bookings_you_can_accept">Bookings you can accept</string>
+    <string name="accepted_bookings">Accepted bookings</string>
+    <!--END: Firebase Firestore values-->
+
 </resources>
