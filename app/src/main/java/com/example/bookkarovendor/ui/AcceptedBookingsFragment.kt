@@ -28,16 +28,31 @@ class AcceptedBookingsFragment : Fragment() {
             )
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_accepted, container, false)
 
+        setNoBookings()
         binding.bookingsRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.getAcceptedBookings()
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer { bookings ->
                 if (!bookings.isNullOrEmpty()) {
+                    setBookingsExist()
                     val adapter = AcceptedBookingsAdapter(bookings, requireContext())
                     binding.bookingsRecycler.adapter = adapter
+                } else {
+                    setNoBookings()
                 }
             })
 
         return binding.root
     }
+
+    private fun setNoBookings() {
+        binding.bookingsRecycler.visibility = View.GONE
+        binding.noBookingsText.visibility = View.VISIBLE
+    }
+
+    private fun setBookingsExist() {
+        binding.bookingsRecycler.visibility = View.VISIBLE
+        binding.noBookingsText.visibility = View.GONE
+    }
+
 }

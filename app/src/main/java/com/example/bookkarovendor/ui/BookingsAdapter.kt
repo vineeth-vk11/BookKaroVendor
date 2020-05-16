@@ -2,6 +2,7 @@ package com.example.bookkarovendor.ui
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,7 @@ class AcceptBookingsAdapter(
     private val application: Application
 ) : RecyclerView.Adapter<AcceptBookingViewHolder>() {
 
-    val firestoreRepository = FirestoreRepository(application)
+    private val firestoreRepository = FirestoreRepository(application)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AcceptBookingViewHolder {
         return AcceptBookingViewHolder(
@@ -61,7 +62,7 @@ class AcceptBookingsAdapter(
         holder.servicePriceText.text = priceText
         holder.acceptService.setOnClickListener {
             firestoreRepository.acceptBooking(booking.docID)
-            notifyItemRemoved(position)
+            Log.d("AcceptBookingsAdapter", "Accepted booking")
         }
     }
 }

@@ -13,6 +13,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class FirestoreRepository(private val application: Application) {
 
+    init {
+        Log.d("FirestoreRepository", "FirestoreRepository created")
+    }
+
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
@@ -38,17 +42,24 @@ class BookingsViewModel(private val application: Application) : ViewModel() {
     private val TAG = "BOOKINGS_VIEW_MODEL"
     private val firestoreRepository = FirestoreRepository(application)
 
+    init {
+        Log.d(TAG, "BookingsViewModel created")
+    }
+
     private val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
     private var pendingBookings: MutableLiveData<List<Booking>> = MutableLiveData()
     private var acceptedBookings: MutableLiveData<List<Booking>> = MutableLiveData()
 
     fun getPendingBookings(): LiveData<List<Booking>> {
-
+        Log.d(TAG, "getPendingBookings() called")
         firestoreRepository.getBookings().whereEqualTo(
             application.getString(R.string.firestore_collection_order_data_field_status),
             Booking.STATUS_PENDING
         ).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+            Log.d(TAG, "getPendingBookings Snapshot listener called")
+
             if (firebaseFirestoreException != null) {
                 Log.e(TAG, "Firestore listening failed.")
                 pendingBookings.value = null
@@ -57,6 +68,7 @@ class BookingsViewModel(private val application: Application) : ViewModel() {
 
             val pendingBookingsList: MutableList<Booking> = mutableListOf()
             for (doc in querySnapshot!!) {
+                Log.d(TAG, "getPendingBookings Found a document: ${doc.data}")
                 pendingBookingsList.add(
                     Booking(
                         doc.id,
@@ -67,7 +79,9 @@ class BookingsViewModel(private val application: Application) : ViewModel() {
                 )
             }
             pendingBookings.value = pendingBookingsList
+            Log.d(TAG, "Value of pendingBookings changed")
         }
+        Log.d(TAG, "Value of pendingBookings returned")
         return pendingBookings
     }
 
@@ -77,6 +91,9 @@ class BookingsViewModel(private val application: Application) : ViewModel() {
             application.getString(R.string.firestore_collection_order_data_field_accepted_shop_id),
             uid
         ).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+            Log.d(TAG, "getAcceptedBookings Snapshot listener called")
+
             if (firebaseFirestoreException != null) {
                 Log.e(TAG, "Firestore listening failed.")
                 acceptedBookings.value = null
@@ -95,7 +112,9 @@ class BookingsViewModel(private val application: Application) : ViewModel() {
                 )
             }
             acceptedBookings.value = acceptedBookingsList
+            Log.d(TAG, "Value of acceptedBookings changed")
         }
+        Log.d(TAG, "Value of acceptedBookings returned")
         return acceptedBookings
     }
 

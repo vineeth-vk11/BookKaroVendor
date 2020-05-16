@@ -32,6 +32,8 @@
     <string name="firestore_collection_order_data_field_user_id" translatable="false">userId</string>
     <string name="bookings_you_can_accept">Bookings you can accept</string>
     <string name="accepted_bookings">Accepted bookings</string>
+    <string name="no_orders">No service requests available at the moment</string>
+    <string name="no_services_accepted">You haven\'t accepted any service requests</string>
     <!--END: Firebase Firestore values-->
 
 </resources>
