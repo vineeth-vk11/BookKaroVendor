@@ -8,16 +8,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/no_bookings_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_services_accepted"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bookings_header_text" />
-
-        <TextView
             android:id="@+id/bookings_header_text"
             style="@style/TextToolbar"
             android:layout_width="match_parent"
@@ -36,6 +26,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookings_header_text"
             tools:listitem="@layout/list_item_accept_booking" />
+
+        <ImageView
+            android:id="@+id/no_bookings_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/no_bookings_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bookings_header_text"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_group" />
+
+        <TextView
+            android:id="@+id/no_bookings_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_services_accepted"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/no_bookings_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

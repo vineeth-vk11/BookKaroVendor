@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Book Karo Vendor</string>
     <string name="title_accepted">Accepted</string>
-    <string name="title_all">All</string>
+    <string name="title_available">Available</string>
     <string name="title_profile">Profile</string>
     <string name="login">Login</string>
     <string name="or">or</string>
@@ -34,6 +34,9 @@
     <string name="accepted_bookings">Accepted bookings</string>
     <string name="no_orders">No service requests available at the moment</string>
     <string name="no_services_accepted">You haven\'t accepted any service requests</string>
+    <string name="work_started">Started</string>
+    <string name="work_completed">Completed</string>
+    <string name="work_cancel">Cancel</string>
     <!--END: Firebase Firestore values-->
 
 </resources>

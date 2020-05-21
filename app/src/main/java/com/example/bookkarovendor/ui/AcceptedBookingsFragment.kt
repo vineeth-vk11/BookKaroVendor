@@ -35,7 +35,11 @@ class AcceptedBookingsFragment : Fragment() {
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer { bookings ->
                 if (!bookings.isNullOrEmpty()) {
                     setBookingsExist()
-                    val adapter = AcceptedBookingsAdapter(bookings, requireContext())
+                    val adapter = AcceptedBookingsAdapter(
+                        bookings,
+                        requireContext(),
+                        FirestoreRepository(requireActivity().application)
+                    )
                     binding.bookingsRecycler.adapter = adapter
                 } else {
                     setNoBookings()
@@ -48,11 +52,14 @@ class AcceptedBookingsFragment : Fragment() {
     private fun setNoBookings() {
         binding.bookingsRecycler.visibility = View.GONE
         binding.noBookingsText.visibility = View.VISIBLE
+        binding.noBookingsImage.visibility = View.VISIBLE
+
     }
 
     private fun setBookingsExist() {
         binding.bookingsRecycler.visibility = View.VISIBLE
         binding.noBookingsText.visibility = View.GONE
+        binding.noBookingsImage.visibility = View.GONE
     }
 
 }

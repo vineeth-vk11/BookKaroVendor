@@ -57,11 +57,14 @@ class AvailableBookingsFragment : Fragment() {
     private fun setNoBookings() {
         binding.bookingsRecycler.visibility = View.GONE
         binding.noBookingsText.visibility = View.VISIBLE
+        binding.noBookingsImage.visibility = View.VISIBLE
+
     }
 
     private fun setBookingsExist() {
         binding.bookingsRecycler.visibility = View.VISIBLE
         binding.noBookingsText.visibility = View.GONE
+        binding.noBookingsImage.visibility = View.GONE
     }
 
 }

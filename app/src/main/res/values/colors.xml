@@ -12,7 +12,11 @@
     <color name="colorTextHeader">#000000</color>
     <color name="colorLogout">#FF0000</color>
 
-    <color name="statusAccepted">#1B8700</color>
+    <color name="statusAccept">#1B8700</color>
+
+    <color name="updateStatusCancel">#D32F2F</color>
+    <color name="updateStatusStarted">#F57C00</color>
+    <color name="updateStatusCompleted">#388E3C</color>
 
     <color name="colorBackgroundAppBar">#000000</color>
     <color name="colorTextAppBar">#FFFFFF</color>

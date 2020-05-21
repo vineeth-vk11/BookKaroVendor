@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_all_bookings"
         android:name="com.example.bookkarovendor.ui.AvailableBookingsFragment"
-        android:label="@string/title_all"
+        android:label="@string/title_available"
         tools:layout="@layout/fragment_available_bookings" />
 
     <fragment
