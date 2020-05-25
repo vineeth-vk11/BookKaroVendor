@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookkarovendor.R
@@ -20,10 +21,15 @@ import java.util.*
 
 data class Booking(
     val docID: String,
+    val acceptedShopNumber: String?,
     val serviceDate: Date,
     val serviceName: String,
     val servicePrice: Long,
-    val status: Long
+    val shopAddress: String?,
+    val shopIconUrl: String?,
+    val shopName: String?,
+    val status: Long,
+    val userId: String
 ) {
     companion object {
         const val STATUS_PENDING = 100L
@@ -39,15 +45,15 @@ class AcceptBookingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val serviceNameText: TextView = view.booking_service_name
     val servicePriceText: TextView = view.booking_price
     val acceptService: ImageView = view.booking_accept
+    val acceptProgress: ProgressBar = view.booking_progress
 }
 
 class AcceptBookingsAdapter(
     private val items: List<Booking>,
     private val context: Context,
-    private val application: Application
+    private val application: Application,
+    private val viewModel: BookingsViewModel
 ) : RecyclerView.Adapter<AcceptBookingViewHolder>() {
-
-    private val firestoreRepository = FirestoreRepository(application)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AcceptBookingViewHolder {
         return AcceptBookingViewHolder(
@@ -68,7 +74,9 @@ class AcceptBookingsAdapter(
         holder.serviceNameText.text = booking.serviceName
         holder.servicePriceText.text = priceText
         holder.acceptService.setOnClickListener {
-            firestoreRepository.acceptBooking(booking.docID)
+            holder.acceptService.visibility = View.GONE
+            holder.acceptProgress.visibility = View.VISIBLE
+            viewModel.acceptBooking(booking.docID)
         }
     }
 }

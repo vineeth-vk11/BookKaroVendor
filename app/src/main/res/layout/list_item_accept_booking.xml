@@ -68,6 +68,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/outline_done_24" />
 
+                <ProgressBar
+                    android:id="@+id/booking_progress"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>

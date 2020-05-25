@@ -21,15 +21,6 @@
     <string name="unable_to_add_account">Unable to add your account. Please try again.</string>
     <string name="rupee_symbol">₹</string>
 
-
-    <!--START: Firebase Firestore values-->
-    <string name="firestore_collection_order_data" translatable="false">OrderData</string>
-    <string name="firestore_collection_order_data_field_accepted_shop_id" translatable="false">acceptedShopId</string>
-    <string name="firestore_collection_order_data_field_service_date" translatable="false">serviceDate</string>
-    <string name="firestore_collection_order_data_field_service_name" translatable="false">serviceName</string>
-    <string name="firestore_collection_order_data_field_service_price" translatable="false">servicePrice</string>
-    <string name="firestore_collection_order_data_field_status" translatable="false">status</string>
-    <string name="firestore_collection_order_data_field_user_id" translatable="false">userId</string>
     <string name="bookings_you_can_accept">Bookings you can accept</string>
     <string name="accepted_bookings">Accepted bookings</string>
     <string name="no_orders">No service requests available at the moment</string>
@@ -37,6 +28,23 @@
     <string name="work_started">Started</string>
     <string name="work_completed">Completed</string>
     <string name="work_cancel">Cancel</string>
+
+    <!--START: Firebase Firestore values-->
+    <string name="firestore_collection_order_data" translatable="false">OrderData</string>
+    <string name="firestore_collection_order_data_field_accepted_shop_number" translatable="false">acceptedShopNumber</string>
+    <string name="firestore_collection_order_data_field_user_id" translatable="false">userId</string>
+    <string name="firestore_collection_order_data_field_service_date" translatable="false">serviceDate</string>
+    <string name="firestore_collection_order_data_field_service_name" translatable="false">serviceName</string>
+    <string name="firestore_collection_order_data_field_service_price" translatable="false">servicePrice</string>
+    <string name="firestore_collection_order_data_field_status" translatable="false">status</string>
+    <string name="firestore_collection_order_data_field_shop_address" translatable="false">shopAddress</string>
+    <string name="firestore_collection_order_data_field_shop_icon_url" translatable="false">shopIconUrl</string>
+    <string name="firestore_collection_order_data_field_shop_name" translatable="false">shopName</string>
+
+    <string name="firestore_collection_vendor_data" translatable="false">VendorData</string>
+    <string name="firestore_collection_vendor_data_field_shop_address" translatable="false">shopAddress</string>
+    <string name="firestore_collection_vendor_data_field_shop_icon_url" translatable="false">shopIconUrl</string>
+    <string name="firestore_collection_vendor_data_field_shop_name" translatable="false">shopName</string>
     <!--END: Firebase Firestore values-->
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookkarovendor.R
@@ -33,17 +34,17 @@ class AvailableBookingsFragment : Fragment() {
             false
         )
 
-        setNoBookings()
         binding.bookingsRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.getPendingBookings()
-            .observe(viewLifecycleOwner, androidx.lifecycle.Observer { bookings ->
+            .observe(viewLifecycleOwner, Observer { bookings ->
                 if (!bookings.isNullOrEmpty()) {
                     setBookingsExist()
                     val adapter = AcceptBookingsAdapter(
                         bookings,
                         requireContext(),
-                        requireActivity().application
+                        requireActivity().application,
+                        viewModel
                     )
                     binding.bookingsRecycler.adapter = adapter
                 } else {
@@ -58,7 +59,6 @@ class AvailableBookingsFragment : Fragment() {
         binding.bookingsRecycler.visibility = View.GONE
         binding.noBookingsText.visibility = View.VISIBLE
         binding.noBookingsImage.visibility = View.VISIBLE
-
     }
 
     private fun setBookingsExist() {
