@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".householdserviceprovider.HouseholdServicesActivity"
             android:label="@string/app_name" />
     </application>
 

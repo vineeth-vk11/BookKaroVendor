@@ -3,17 +3,15 @@ package com.example.bookkarovendor.loginui
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.example.bookkarovendor.MainActivity
 import com.example.bookkarovendor.R
 import com.example.bookkarovendor.databinding.FragmentLoginValidateOtpBinding
+import com.example.bookkarovendor.householdserviceprovider.HouseholdServicesActivity
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
@@ -119,8 +117,8 @@ class LoginValidateOTPFragment : Fragment() {
         setLoading()
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity!!.finish()
+                startActivity(Intent(activity, HouseholdServicesActivity::class.java))
+                requireActivity().finish()
             } else {
                 setNotLoading()
                 Snackbar.make(

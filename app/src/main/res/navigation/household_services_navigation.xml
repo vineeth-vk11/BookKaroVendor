@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_accepted_bookings"
-        android:name="com.example.bookkarovendor.ui.AcceptedBookingsFragment"
+        android:name="com.example.bookkarovendor.householdserviceprovider.ui.AcceptedBookingsFragment"
         android:label="@string/title_accepted"
         tools:layout="@layout/fragment_accepted" />
 
     <fragment
         android:id="@+id/navigation_all_bookings"
-        android:name="com.example.bookkarovendor.ui.AvailableBookingsFragment"
+        android:name="com.example.bookkarovendor.householdserviceprovider.ui.AvailableBookingsFragment"
         android:label="@string/title_available"
         tools:layout="@layout/fragment_available_bookings" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.bookkarovendor.ui.ProfileFragment"
+        android:name="com.example.bookkarovendor.householdserviceprovider.ui.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

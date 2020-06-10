@@ -1,4 +1,4 @@
-package com.example.bookkarovendor.ui
+package com.example.bookkarovendor.householdserviceprovider.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

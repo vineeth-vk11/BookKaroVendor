@@ -37,13 +37,16 @@ class LoginEnterPhoneFragment : Fragment() {
         return binding.root
     }
 
-    private fun validatePhoneAndRedirect(phone: String): Boolean {
+    private fun validatePhoneAndRedirect(phone: String) {
         if (phone.matches(Regex("[1-9][0-9]{9}"))) {
-            firebaseDb.collection("VendorData")
-                .document("+91$phone")
-                .get()
+            val phoneNumber = "+91$phone"
+            firebaseDb.collection("ServiceProviders").document(phoneNumber).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
+                        val type = document.getLong("type")
+                        val servicesProvided = document.getString("servicesProvided")
+                        //TODO: Store these vendor details (type and servicesProvided) in SharedPreferences
+
                         val action =
                             LoginEnterPhoneFragmentDirections.actionLoginEnterPhoneFragmentToLoginValidateOTPFragment(
                                 phone
@@ -52,27 +55,17 @@ class LoginEnterPhoneFragment : Fragment() {
                     } else {
                         Snackbar.make(
                             binding.enterPhoneCoordinator,
-                            "You are not registered as a vendor",
+                            "You're not registered as a vendor",
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
                 }
-                .addOnFailureListener {
-                    Snackbar.make(
-                        binding.enterPhoneCoordinator,
-                        "An error occurred. Please try again later",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    it.printStackTrace()
-                }
-            return false
         } else {
             Snackbar.make(
                 binding.enterPhoneCoordinator,
                 "Invalid phone number",
                 Snackbar.LENGTH_SHORT
             ).show()
-            return false
         }
     }
 
