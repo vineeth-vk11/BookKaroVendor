@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/delivery_services_navigation"
+    app:startDestination="@id/availableBookingsFragmentDelivery">
+    <fragment
+        android:id="@+id/availableBookingsFragmentDelivery"
+        android:name="com.example.bookkarovendor.deliveryservicesprovider.ui.AvailableBookingsFragment"
+        android:label="fragment_available_delivery"
+        tools:layout="@layout/fragment_available_delivery" />
+    <fragment
+        android:id="@+id/acceptedBookingsFragmentDelivery"
+        android:name="com.example.bookkarovendor.deliveryservicesprovider.ui.AcceptedBookingsFragment"
+        android:label="fragment_delivery_accepted"
+        tools:layout="@layout/fragment_delivery_accepted" />
+    <fragment
+        android:id="@+id/profileFragmentDelivery"
+        android:name="com.example.bookkarovendor.deliveryservicesprovider.ui.ProfileFragment"
+        android:label="fragment_profile_delivery"
+        tools:layout="@layout/fragment_profile_delivery" />
+</navigation>

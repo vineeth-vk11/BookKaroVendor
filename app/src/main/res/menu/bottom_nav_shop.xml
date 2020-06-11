@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/acceptedBookingsFragmentShop"
+        android:icon="@drawable/outline_dns_24"
+        android:title="@string/title_accepted" />
+
+    <item
+        android:id="@+id/availableBookingsFragmentShop"
+        android:icon="@drawable/outline_dashboard_24"
+        android:title="@string/title_available" />
+
+    <item
+        android:id="@+id/profileFragmentShop"
+        android:icon="@drawable/outline_account_circle_24"
+        android:title="@string/title_profile" />
+
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shop_services_navigation"
+    app:startDestination="@id/availableBookingsFragmentShop">
+
+    <fragment
+        android:id="@+id/availableBookingsFragmentShop"
+        android:name="com.example.bookkarovendor.shopservicesprovider.ui.AvailableBookingsFragment"
+        android:label="fragment_available_shop"
+        tools:layout="@layout/fragment_available_shop" />
+    <fragment
+        android:id="@+id/acceptedBookingsFragmentShop"
+        android:name="com.example.bookkarovendor.shopservicesprovider.ui.AcceptedBookingsFragment"
+        android:label="fragment_accepted_shop"
+        tools:layout="@layout/fragment_accepted_shop" />
+    <fragment
+        android:id="@+id/profileFragmentShop"
+        android:name="com.example.bookkarovendor.shopservicesprovider.ui.ProfileFragment"
+        android:label="fragment_profile_shop"
+        tools:layout="@layout/fragment_profile_shop" />
+</navigation>
