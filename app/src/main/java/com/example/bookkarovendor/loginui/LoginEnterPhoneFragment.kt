@@ -1,5 +1,6 @@
 package com.example.bookkarovendor.loginui
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.bookkarovendor.R
 import com.example.bookkarovendor.databinding.FragmentLoginEnterPhoneBinding
+import com.example.bookkarovendor.helper.SharedPreference
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginEnterPhoneFragment : Fragment() {
+    var sharedPref: SharedPreference = SharedPreference(requireContext())
 
     private lateinit var binding: FragmentLoginEnterPhoneBinding
     private lateinit var navController: NavController
@@ -46,7 +49,12 @@ class LoginEnterPhoneFragment : Fragment() {
                         val type = document.getLong("type")
                         val servicesProvided = document.getString("servicesProvided")
                         //TODO: Store these vendor details (type and servicesProvided) in SharedPreferences
-
+                        if (type != null) {
+                            sharedPref.save("type",type)
+                        }
+                        if (servicesProvided != null) {
+                            sharedPref.save("servicesProvided",servicesProvided)
+                        }
                         val action =
                             LoginEnterPhoneFragmentDirections.actionLoginEnterPhoneFragmentToLoginValidateOTPFragment(
                                 phone
