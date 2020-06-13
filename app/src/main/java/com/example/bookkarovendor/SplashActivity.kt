@@ -23,15 +23,15 @@ class SplashActivity : AppCompatActivity() {
             finish()
         } else {
             when (sharedPref.getValueLong(SharedPreferencesHelper.PREFS_FIELD_TYPE)) {
-                SharedPreferencesHelper.PREFS_KEY_TYPE_DELIVERY -> {
+                SharedPreferencesHelper.DELIVERY_SERVICE -> {
                     startActivity(Intent(this, DeliveryServicesActivity::class.java))
                     finish()
                 }
-                SharedPreferencesHelper.PREFS_KEY_TYPE_HOUSEHOLD -> {
+                SharedPreferencesHelper.HOUSEHOLD_SERVICE -> {
                     startActivity(Intent(this, HouseholdServicesActivity::class.java))
                     finish()
                 }
-                SharedPreferencesHelper.PREFS_KEY_TYPE_SHOP -> {
+                SharedPreferencesHelper.SHOP_SERVICE -> {
                     startActivity(Intent(this, ShopServicesActivity::class.java))
                     finish()
                 }

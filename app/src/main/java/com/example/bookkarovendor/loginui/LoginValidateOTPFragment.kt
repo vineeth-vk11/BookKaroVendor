@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.bookkarovendor.R
 import com.example.bookkarovendor.databinding.FragmentLoginValidateOtpBinding
+import com.example.bookkarovendor.helper.SharedPreferencesHelper
 import com.example.bookkarovendor.householdserviceprovider.HouseholdServicesActivity
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.android.material.snackbar.Snackbar
@@ -24,7 +26,10 @@ import java.util.concurrent.TimeUnit
 class LoginValidateOTPFragment : Fragment() {
 
     private lateinit var storedVerificationId: String
+
     private lateinit var phone: String
+    private var type = 0L
+    private var category = 0L
 
     private lateinit var binding: FragmentLoginValidateOtpBinding
     private lateinit var db: FirebaseFirestore
@@ -42,8 +47,11 @@ class LoginValidateOTPFragment : Fragment() {
         )
         db = FirebaseFirestore.getInstance()
 
+        val args by navArgs<LoginValidateOTPFragmentArgs>()
+        phone = args.phoneNumber
+        type = args.type
+        category = args.category
 
-        phone = requireArguments().getString("phone_number").toString()
         val otpMessage = getString(R.string.otp_sent_to) + " +91 $phone"
         binding.validateOtpSubHeader.text = otpMessage
 
@@ -117,6 +125,14 @@ class LoginValidateOTPFragment : Fragment() {
         setLoading()
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                SharedPreferencesHelper(requireContext()).save(
+                    SharedPreferencesHelper.PREFS_FIELD_TYPE,
+                    type
+                )
+                SharedPreferencesHelper(requireContext()).save(
+                    SharedPreferencesHelper.PREFS_FIELD_CATEGORY,
+                    category
+                )
                 startActivity(Intent(activity, HouseholdServicesActivity::class.java))
                 requireActivity().finish()
             } else {
@@ -153,15 +169,17 @@ class LoginValidateOTPFragment : Fragment() {
     }
 
     private fun setRequestAgain() {
-        binding.codeNotReceivedWaitText.setTextColor(
-            ContextCompat.getColor(
-                requireContext(),
-                R.color.colorTextHeader
+        if (isVisible) {
+            binding.codeNotReceivedWaitText.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorTextHeader
+                )
             )
-        )
-        binding.codeNotReceivedWaitText.text = getString(R.string.resend_otp)
-        binding.codeNotReceivedWaitText.setOnClickListener {
-            sendAuthRequest()
+            binding.codeNotReceivedWaitText.text = getString(R.string.resend_otp)
+            binding.codeNotReceivedWaitText.setOnClickListener {
+                sendAuthRequest()
+            }
         }
     }
 

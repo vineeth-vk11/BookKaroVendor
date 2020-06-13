@@ -16,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginEnterPhoneFragment : Fragment() {
 
-    private lateinit var sharedPref: SharedPreferencesHelper
     private lateinit var binding: FragmentLoginEnterPhoneBinding
     private lateinit var navController: NavController
 
@@ -30,7 +29,6 @@ class LoginEnterPhoneFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_login_enter_phone, container, false)
         navController = findNavController()
         firebaseDb = FirebaseFirestore.getInstance()
-        sharedPref = SharedPreferencesHelper(requireContext())
 
         binding.loginButton.setOnClickListener {
             val phone = binding.loginPhoneEdit.text.toString()
@@ -46,20 +44,14 @@ class LoginEnterPhoneFragment : Fragment() {
             firebaseDb.collection("ServiceProviders").document(phoneNumber).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-                        val type = document.getLong("type")
-                        val servicesProvided = document.getString("servicesProvided")
-
-                        if (type != null)
-                            sharedPref.save(SharedPreferencesHelper.PREFS_FIELD_TYPE, type)
-                        if (servicesProvided != null)
-                            sharedPref.save(
-                                SharedPreferencesHelper.PREFS_FIELD_SERVICES_PROVIDED,
-                                servicesProvided
-                            )
-
+                        val type = document.getLong("type") ?: 0
+                        var category: Long = 0
+                        if (type != SharedPreferencesHelper.DELIVERY_SERVICE) {
+                            category = document.getLong("category") ?: 0
+                        }
                         val action =
                             LoginEnterPhoneFragmentDirections.actionLoginEnterPhoneFragmentToLoginValidateOTPFragment(
-                                phone
+                                phone, type, category
                             )
                         navController.navigate(action)
                     } else {

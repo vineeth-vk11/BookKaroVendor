@@ -21,5 +21,11 @@
         <argument
             android:name="phone_number"
             app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="long" />
+        <argument
+            android:name="category"
+            app:argType="long" />
     </fragment>
 </navigation>
