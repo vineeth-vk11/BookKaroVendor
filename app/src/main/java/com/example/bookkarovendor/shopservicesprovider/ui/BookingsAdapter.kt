@@ -1,4 +1,4 @@
-package com.example.bookkarovendor.householdserviceprovider.ui
+package com.example.bookkarovendor.shopservicesprovider.ui
 
 import android.app.Application
 import android.content.Context
@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookkarovendor.R
 import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.list_item_accept_booking.view.*
-import kotlinx.android.synthetic.main.list_item_accept_booking.view.booking_date
-import kotlinx.android.synthetic.main.list_item_accept_booking.view.booking_price
-import kotlinx.android.synthetic.main.list_item_accept_booking.view.booking_service_name
 import kotlinx.android.synthetic.main.list_item_accepted_booking.view.*
+import kotlinx.android.synthetic.main.list_item_available_shop.view.*
+import kotlinx.android.synthetic.main.list_item_shop_accepted.view.*
 import java.text.SimpleDateFormat
 import java.util.*
- open class BookingHouseHold(
+
+ class BookingShop(
     val docID: String,
     val acceptedShopNumber: String?,
     val serviceDate: Date?,
@@ -42,24 +42,24 @@ import java.util.*
     }
 }
 
-  class AcceptBookingViewHolderHouseHold(view: View) : RecyclerView.ViewHolder(view) {
-    val serviceDateText: TextView = view.booking_date
-    val serviceNameText: TextView = view.booking_service_name
-    val servicePriceText: TextView = view.booking_price
-    val acceptService: ImageView = view.booking_accept
-    val acceptProgress: ProgressBar = view.booking_progress
+ class AcceptBookingViewHolderShop(view: View) : RecyclerView.ViewHolder(view) {
+    val serviceDateText: TextView = view.booking_date_shop_available
+    val serviceNameText: TextView = view.booking_service_name_shop_available
+    val servicePriceText: TextView = view.booking_price_shop_available
+    val acceptService: ImageView = view.booking_accept_shop_available
+    val acceptProgress: ProgressBar? = view.booking_progress
 }
 
-  class AcceptBookingsAdapterHouseHold(
-      private val items: List<BookingHouseHold>,
-      private val context: Context,
-      private val application: Application,
-      private val viewModel: BookingsViewModel
-) : RecyclerView.Adapter<AcceptBookingViewHolderHouseHold>() {
+ class AcceptBookingsAdapterShop(
+    private val items: List<BookingShop>,
+    private val context: Context,
+    private val application: Application,
+    private val viewModel: ShopBookingsViewModel
+) : RecyclerView.Adapter<AcceptBookingViewHolderShop>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AcceptBookingViewHolderHouseHold {
-        return AcceptBookingViewHolderHouseHold(
-            LayoutInflater.from(context).inflate(R.layout.list_item_accept_booking, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AcceptBookingViewHolderShop {
+        return AcceptBookingViewHolderShop(
+            LayoutInflater.from(context).inflate(R.layout.list_item_available_shop, parent, false)
         )
     }
 
@@ -69,7 +69,7 @@ import java.util.*
 
     private val formatter = SimpleDateFormat("MMMM dd hh:mm a", Locale.getDefault())
 
-    override fun onBindViewHolder(holder: AcceptBookingViewHolderHouseHold, position: Int) {
+    override fun onBindViewHolder(holder: AcceptBookingViewHolderShop, position: Int) {
         val booking = items[position]
         val priceText = "${application.getString(R.string.rupee_symbol)}${booking.servicePrice}"
         if (booking.serviceDate !== null && holder.serviceNameText.text !== null) {
@@ -81,35 +81,36 @@ import java.util.*
             holder.acceptService.setOnClickListener {
                 Log.d("HouseHold","adapter onClick Listener Triggered")
                 holder.acceptService.visibility = View.GONE
-                holder.acceptProgress.visibility = View.VISIBLE
+                if(holder.acceptProgress!==null)
+                    holder.acceptProgress.visibility = View.VISIBLE
                 viewModel.acceptBooking(booking.docID)
             }
         }
 
     }
 
-     class AcceptedBookingViewHolderHouseHold(view: View) : RecyclerView.ViewHolder(view) {
-        val serviceDateText: TextView = view.booking_date
-        val serviceNameText: TextView = view.booking_service_name
-        val servicePriceText: TextView = view.booking_price
-        val workStartedButton: MaterialButton = view.workStartedButton
-        val workCompletedButton: MaterialButton = view.workCompletedButton
-        val cancelWorkButton: MaterialButton = view.cancelWorkButton
+    class AcceptedBookingViewHolderShop(view: View) : RecyclerView.ViewHolder(view) {
+        val serviceDateText: TextView = view.booking_date_shop_accepted
+        val serviceNameText: TextView = view.booking_service_name_shop_accepted
+        val servicePriceText: TextView = view.booking_price_shop_accepted
+        val workStartedButton: MaterialButton = view.workStartedButton_shop_accepted
+        val workCompletedButton: MaterialButton = view.workCompletedButton_shop_accepted
+        val cancelWorkButton: MaterialButton = view.cancelWorkButton_shop_accepted
     }
 
-     class AcceptedBookingsAdapterHouseHold(
-        private val items: List<BookingHouseHold>,
+    class AcceptedBookingsAdapterShop(
+        private val items: List<BookingShop>,
         private val context: Context,
-        private val repository: FirestoreRepositoryHouseHold
-    ) : RecyclerView.Adapter<AcceptedBookingViewHolderHouseHold>() {
+        private val repository: FirestoreRepositoryShop
+    ) : RecyclerView.Adapter<AcceptedBookingViewHolderShop>() {
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): AcceptedBookingViewHolderHouseHold {
-            return AcceptedBookingViewHolderHouseHold(
+        ): AcceptedBookingViewHolderShop {
+            return AcceptedBookingViewHolderShop(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.list_item_accepted_booking, parent, false)
+                    .inflate(R.layout.list_item_shop_accepted, parent, false)
             )
         }
 
@@ -119,7 +120,7 @@ import java.util.*
 
         private val formatter = SimpleDateFormat("MMMM dd hh:mm a", Locale.getDefault())
 
-        override fun onBindViewHolder(holder: AcceptedBookingViewHolderHouseHold, position: Int) {
+        override fun onBindViewHolder(holder: AcceptedBookingViewHolderShop, position: Int) {
             val booking = items[position]
             val priceText = "${context.getString(R.string.rupee_symbol)}${booking.servicePrice}"
             holder.serviceDateText.text = formatter.format(booking.serviceDate)
@@ -127,11 +128,11 @@ import java.util.*
             holder.servicePriceText.text = priceText
 
             holder.workStartedButton.setOnClickListener {
-                repository.updateBooking(booking.docID, BookingHouseHold.STATUS_STARTED)
+                repository.updateBooking(booking.docID, BookingShop.STATUS_STARTED)
             }
 
             holder.workCompletedButton.setOnClickListener {
-                repository.updateBooking(booking.docID, BookingHouseHold.STATUS_COMPLETED)
+                repository.updateBooking(booking.docID, BookingShop.STATUS_COMPLETED)
             }
 
             holder.cancelWorkButton.setOnClickListener {

@@ -40,6 +40,8 @@
     <string name="firestore_collection_order_data_field_shop_address" translatable="false">shopAddress</string>
     <string name="firestore_collection_order_data_field_shop_icon_url" translatable="false">shopIconUrl</string>
     <string name="firestore_collection_order_data_field_shop_name" translatable="false">shopName</string>
+    <string name="firestore_collection_order_data_field_category" translatable="false">category</string>
+    <string name="firestore_collection_order_data_field_type" translatable="false">serviceType</string>
 
     <string name="firestore_collection_vendor_data" translatable="false">VendorData</string>
     <string name="firestore_collection_vendor_data_field_shop_address" translatable="false">shopAddress</string>

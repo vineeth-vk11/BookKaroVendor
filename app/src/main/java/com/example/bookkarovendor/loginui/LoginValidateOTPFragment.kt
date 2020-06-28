@@ -26,11 +26,9 @@ import java.util.concurrent.TimeUnit
 class LoginValidateOTPFragment : Fragment() {
 
     private lateinit var storedVerificationId: String
-
     private lateinit var phone: String
     private var type = 0L
     private var category = 0L
-
     private lateinit var binding: FragmentLoginValidateOtpBinding
     private lateinit var db: FirebaseFirestore
 

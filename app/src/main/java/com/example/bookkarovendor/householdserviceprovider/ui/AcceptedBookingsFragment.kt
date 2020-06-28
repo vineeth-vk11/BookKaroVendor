@@ -35,10 +35,10 @@ class AcceptedBookingsFragment : Fragment() {
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer { bookings ->
                 if (!bookings.isNullOrEmpty()) {
                     setBookingsExist()
-                    val adapter = AcceptedBookingsAdapter(
+                    val adapter = AcceptBookingsAdapterHouseHold.AcceptedBookingsAdapterHouseHold(
                         bookings,
                         requireContext(),
-                        FirestoreRepository(requireActivity().application)
+                        FirestoreRepositoryHouseHold(requireActivity().application)
                     )
                     binding.bookingsRecycler.adapter = adapter
                 } else {

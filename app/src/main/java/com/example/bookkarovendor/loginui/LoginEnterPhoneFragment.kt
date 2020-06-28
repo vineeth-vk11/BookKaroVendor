@@ -1,6 +1,7 @@
 package com.example.bookkarovendor.loginui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class LoginEnterPhoneFragment : Fragment() {
                         var category: Long = 0
                         if (type != SharedPreferencesHelper.DELIVERY_SERVICE) {
                             category = document.getLong("category") ?: 0
+                            Log.d("SplashActivity","type recieved :${type}")
                         }
                         val action =
                             LoginEnterPhoneFragmentDirections.actionLoginEnterPhoneFragmentToLoginValidateOTPFragment(

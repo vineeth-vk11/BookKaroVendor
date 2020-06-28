@@ -40,7 +40,7 @@ class AvailableBookingsFragment : Fragment() {
             .observe(viewLifecycleOwner, Observer { bookings ->
                 if (!bookings.isNullOrEmpty()) {
                     setBookingsExist()
-                    val adapter = AcceptBookingsAdapter(
+                    val adapter = AcceptBookingsAdapterHouseHold(
                         bookings,
                         requireContext(),
                         requireActivity().application,
