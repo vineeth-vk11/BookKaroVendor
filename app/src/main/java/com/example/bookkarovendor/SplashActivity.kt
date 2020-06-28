@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         val sharedPref = SharedPreferencesHelper(this)
         val user = FirebaseAuth.getInstance().currentUser
         val type = sharedPref.getValueLong(SharedPreferencesHelper.PREFS_FIELD_TYPE)
-        if (user !== null) {
+        if (user == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
